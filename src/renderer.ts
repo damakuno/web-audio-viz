@@ -8,7 +8,7 @@ const scale = (num: number, in_min: number, in_max: number, out_min: number, out
 	return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
-const arrSize = 100;
+const arrSize = 300;
 
 let dataArray: Uint8Array = new Uint8Array(arrSize);
 let visualizerCanvas: HTMLCanvasElement;
@@ -51,7 +51,7 @@ let drawLoop = () => {
 		let rectHeight = scale(dataArray[i], 0, 255, 0, height);
 		let x = rectWidth * i;
 		let y = height - rectHeight;
-		visContext.fillStyle = `rgba(${r}, ${g}, ${b}, 0.58)`;
+		visContext.fillStyle = `rgba(${r}, ${g}, ${b}, 0.50)`;
 		visContext.fillRect(x, y, rectWidth, rectHeight);
 	}
 }
