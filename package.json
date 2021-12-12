@@ -27,5 +27,7 @@
     "url": "https://github.com/damakuno/web-audio-viz/issues"
   },
   "homepage": "https://github.com/damakuno/web-audio-viz#readme",
-  "dependencies": {}
+  "dependencies": {
+    "start": "^5.1.0"
+  }
 }
