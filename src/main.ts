@@ -11,7 +11,8 @@ function createWindow() {
       preload: path.join(__dirname, "preload.js"),
     },
     width: 800,
-    frame: false
+    frame: false,
+    transparent: true
   });
 
   // and load the index.html of the app.

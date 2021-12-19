@@ -4,6 +4,7 @@
 // nodeIntegration is set to true in webPreferences.
 // Use preload.js to selectively enable features
 // needed in the renderer process.
+
 const scale = (num: number, in_min: number, in_max: number, out_min: number, out_max: number): number => {
 	return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
@@ -33,25 +34,26 @@ let processMedia = async (constraints: MediaStreamConstraints) => {
 }
 
 let drawLoop = () => {
-	requestAnimationFrame(drawLoop);	
+	requestAnimationFrame(drawLoop);
 	analyzer.getByteFrequencyData(dataArray);
 
 	let width = visualizerCanvas.width;
 	let height = visualizerCanvas.height;
 	visContext.clearRect(0, 0, width, height);
-	visContext.fillStyle = 'green';
+	visContext.fillStyle = 'black';
 	visContext.fillRect(0, 0, width, height);
 
 	let rectWidth = width / arrSize;
 	let r = 95;
-	let g = 150;	
+	let g = 150;
 	let b = 255;
-	visContext.fillStyle = 'rgba(95, 151, 255, 155)';
+	let barColor = rgbToObject(r, g, b, 0.5);
 	for (let i = 0; i < dataArray.length; i++) {
 		let rectHeight = scale(dataArray[i], 0, 255, 0, height);
 		let x = rectWidth * i;
 		let y = height - rectHeight;
-		visContext.fillStyle = `rgba(${r}, ${g}, ${b}, 0.50)`;
+		barColor.hueRotation(1);
+		visContext.fillStyle = barColor.toCssRGBA() //`rgba(${r}, ${g}, ${b}, 0.50)`;
 		visContext.fillRect(x, y, rectWidth, rectHeight);
 	}
 }

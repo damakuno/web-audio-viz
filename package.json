@@ -1,23 +1,30 @@
 {
   "name": "web-audio-viz",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Electron based simple audio visualizer, to be used as a live-streaming overlay",
+  "main": "./dist/main.js",
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
     "lint": "eslint -c .eslintrc --ext .ts ./src",
-    "start": "npm run build && electron ./dist/main.js",
-    "launch": "electron ./dist/main.js"
+    "start": "electron-forge start",
+    "launch": "electron ./dist/main.js",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/damakuno/web-audio-viz.git"
   },
   "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.61",
+    "@electron-forge/maker-deb": "^6.0.0-beta.61",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.61",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.61",
+    "@electron-forge/maker-zip": "^6.0.0-beta.61",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
-    "electron": "^15.1.1",
+    "electron": "^15.3.0",
     "eslint": "^7.32.0",
     "typescript": "^4.4.3"
   },
@@ -27,5 +34,34 @@
     "url": "https://github.com/damakuno/web-audio-viz/issues"
   },
   "homepage": "https://github.com/damakuno/web-audio-viz#readme",
-  "dependencies": {}
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "web_audio_viz"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  }
 }
