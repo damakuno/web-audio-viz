@@ -40,8 +40,10 @@ let drawLoop = () => {
 	let width = visualizerCanvas.width;
 	let height = visualizerCanvas.height;
 	visContext.clearRect(0, 0, width, height);
-	visContext.fillStyle = 'black';
+	// visContext.fillStyle = 'black';
+	visContext.fillStyle = 'rgba(0,0,0,0)';
 	visContext.fillRect(0, 0, width, height);
+	// visContext.globalAlpha = 0.0;
 
 	let rectWidth = width / arrSize;
 	let r = 95;
